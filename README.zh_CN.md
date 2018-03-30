@@ -14,7 +14,7 @@
 
 ## 安装
 
-```bash
+```bash
 git clone https://github.com/nicklin99/egg-vhost.git
 npm install
 npm run test-local
@@ -50,7 +50,6 @@ const v1_router = app.vhost.get_new_router({
   v2_router.get('/', app.v2.controller.index.index);
   app.vhost.host(v2_router);
 ```
-
 
 ## 单元测试
 
