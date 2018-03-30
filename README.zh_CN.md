@@ -1,50 +1,28 @@
 # egg-vhost
 
-[![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][codecov-image]][codecov-url]
-[![David deps][david-image]][david-url]
-[![Known Vulnerabilities][snyk-image]][snyk-url]
-[![npm download][download-image]][download-url]
-
-[npm-image]: https://img.shields.io/npm/v/egg-vhost.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/egg-vhost
-[travis-image]: https://img.shields.io/travis/eggjs/egg-vhost.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-vhost
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-vhost.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-vhost?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-vhost.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-vhost
-[snyk-image]: https://snyk.io/test/npm/egg-vhost/badge.svg?style=flat-square
-[snyk-url]: https://snyk.io/test/npm/egg-vhost
-[download-image]: https://img.shields.io/npm/dm/egg-vhost.svg?style=flat-square
-[download-url]: https://npmjs.org/package/egg-vhost
-
-<!--
-Description here.
--->
+一个app多个host
 
 ## 依赖说明
 
-### 依赖的 egg 版本
+### 依赖的 egg 版本 2.0
 
-egg-vhost 版本 | egg 1.x
---- | ---
-1.x | 😁
-0.x | ❌
+| egg-vhost 版本 | egg 2.x |
+| -------------- | ------- |
+| 1.0            | 😁      |
 
 ### 依赖的插件
-<!--
 
-如果有依赖其它插件，请在这里特别说明。如
+## 安装
 
-- security
-- multipart
-
--->
+```bash
+git clone https://github.com/nicklin99/egg-vhost.git
+npm install
+npm run test-local
+```
 
 ## 开启插件
 
+默认host域名  test.com
 ```js
 // config/plugin.js
 exports.vhost = {
@@ -55,21 +33,32 @@ exports.vhost = {
 
 ## 使用场景
 
-- Why and What: 描述为什么会有这个插件，它主要在完成一件什么事情。
-尽可能描述详细。
-- How: 描述这个插件是怎样使用的，具体的示例代码，甚至提供一个完整的示例，并给出链接。
+app/router.js
 
-## 详细配置
+```javascript
+const v1_router = app.vhost.get_new_router({
+    host: 'v1',
+    prefix: '',
+  });
+  v1_router.get('/', app.v1.controller.index.index);
+  app.vhost.host(v1_router);
 
-请到 [config/config.default.js](config/config.default.js) 查看详细配置项说明。
+  const v2_router = app.vhost.get_new_router({
+    host: 'v2',
+    prefix: '/test',
+  });
+  v2_router.get('/', app.v2.controller.index.index);
+  app.vhost.host(v2_router);
+```
+
 
 ## 单元测试
 
-<!-- 描述如何在单元测试中使用此插件，例如 schedule 如何触发。无则省略。-->
+`npm run test-local`
 
 ## 提问交流
 
-请到 [egg issues](https://github.com/eggjs/egg/issues) 异步交流。
+请到 [egg issues](https://github.com/nicklin99/egg-vhost/issues) 异步交流。
 
 ## License
 

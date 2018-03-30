@@ -1,6 +1,6 @@
 # egg-vhost
 
-1个app多个host
+one app map vhost
 
 ## Install
 
@@ -22,7 +22,7 @@ exports.vhost = {
 
 ## Configuration
 
-host 默认host域名  test.com
+app default host domain
 ```js
 // {app_root}/config/config.default.js
 exports.vhost = {
@@ -30,9 +30,9 @@ exports.vhost = {
 };
 ```
 
-see [config/config.default.js](config/config.default.js) for more detail.
-
 ## Example
+
+app/router.js
 
 ```javascript
 const v1_router = app.vhost.get_new_router({
@@ -52,7 +52,7 @@ const v1_router = app.vhost.get_new_router({
 
 ## Questions & Suggestions
 
-Please open an issue [here](https://github.com/eggjs/egg/issues).
+Please open an issue [here](https://github.com/nicklin99/egg-vhost/issues).
 
 ## License
 
